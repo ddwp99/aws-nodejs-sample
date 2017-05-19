@@ -16,7 +16,7 @@
 
 // Load the SDK and UUID
 var AWS = require('aws-sdk');
-var uuid = require('node-uuid');
+var uuid = require('uuid');
 
 // Create an S3 client
 var s3 = new AWS.S3();
@@ -25,12 +25,14 @@ var s3 = new AWS.S3();
 var bucketName = 'node-sdk-sample-' + uuid.v4();
 var keyName = 'hello_world.txt';
 
+console.time('t')
 s3.createBucket({Bucket: bucketName}, function() {
   var params = {Bucket: bucketName, Key: keyName, Body: 'Hello World!'};
   s3.putObject(params, function(err, data) {
     if (err)
       console.log(err)
     else
+      console.timeEnd('t')
       console.log("Successfully uploaded data to " + bucketName + "/" + keyName);
   });
 });
