@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "agentkeepalive": "^3.1.0",
     "aws-sdk": ">= 2.0.9",
     "uuid": ">= 1.4.1"
   }
