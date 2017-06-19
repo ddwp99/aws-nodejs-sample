@@ -1,12 +1,10 @@
 // Load the SDK
 const AWS = require('aws-sdk')
-const HttpsAgent = require('agentkeepalive').HttpsAgent;
+const HttpsAgent = require('https').Agent;
 
-const keepaliveAgent = new HttpsAgent({maxSockets:1});
-
-    
+const keepAliveAgent = new HttpsAgent({maxSockets:1, keepAlive:true});  
 AWS.config.update({
-    httpOptions: { agent: keepaliveAgent }
+    httpOptions: { agent: keepAliveAgent }
 });
 
 
